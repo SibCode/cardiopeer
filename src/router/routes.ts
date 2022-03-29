@@ -56,6 +56,13 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/matrix/demo',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/matrix/MatrixDemo.vue') },
+    ],
+  },
+  {
     path: '/internationalization',
     component: () => import('layouts/MainLayout.vue'),
     children: [

@@ -48,6 +48,20 @@
             v-bind="link"
           />
         </q-expansion-item>
+
+        <q-expansion-item
+          clickable
+          default-opened
+          icon="question_answer"
+          label="Matrix"
+          :content-inset-level="0.5"
+        >
+          <PageLinks
+            v-for="link in matrixLinks"
+            :key="link.title"
+            v-bind="link"
+          />
+        </q-expansion-item>
       </q-list>
     </q-drawer>
 
@@ -109,6 +123,14 @@ const deveelopmentLinksList = [
   },
 ];
 
+const matrixLinksList = [
+  {
+    title: 'Matrix Demo',
+    icon: 'manage_accounts',
+    link: '/matrix/demo'
+  }
+]
+
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
@@ -125,6 +147,7 @@ export default defineComponent({
       pageLinks: linksList,
       midataPageLinks: midataLinksList,
       developmentLinks: deveelopmentLinksList,
+      matrixLinks: matrixLinksList,
 
       drawerExpanded,
       toggleLeftDrawer() {
