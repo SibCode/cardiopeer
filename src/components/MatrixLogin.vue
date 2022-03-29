@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import MatrixService from '../plugins/MatrixService'
 
 export default defineComponent({
   name: 'MatrixLogin',

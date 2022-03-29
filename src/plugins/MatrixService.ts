@@ -1,6 +1,5 @@
 //import {MatrixClient, createClient, IndexedDBCryptoStore, IndexedDBStore} from 'matrix-js-sdk';
 //import {Observable} from 'rxjs';
-import Vue from 'vue';
 import MidataService from './midataService';
 
 export default class MatrixService {
@@ -20,6 +19,6 @@ export default class MatrixService {
     }
 
     loginMatrix(){
-        
+        console.log('i am the matrix login function');
     }
 }
