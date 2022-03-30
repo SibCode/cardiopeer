@@ -1,7 +1,6 @@
 <template>
-    <!-- you define your Vue template here -->
-    <matrix-login v-if="!$midata.isLoggedIn()"></matrix-login>
-    <div v-if="$midata.isLoggedIn()">
+    <matrix-login v-if="!$matrix.isLoggedIn()"></matrix-login>
+    <div v-if="$matrix.isLoggedIn()">
         Matrix Demo Seite funktioniert!
         <q-btn color="purple" label="Test" @click="() => testfunction()"/>
     <q-btn
@@ -31,10 +30,10 @@ export default defineComponent({
   },
   methods: {
     testfunction(){
-        console.log(MatrixConfiguration.HOMESERVER_URL);
+        this.$matrix.consoleMtxClient();
     },
     logout(){
-        this.$midata.logout();
+        this.$matrix.logout();
         location.reload();
     }
   }
