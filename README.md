@@ -1,6 +1,14 @@
-# Midata Quasar Starter Application
+# Cardiopeer
 
-A starter/demo application created with the Quasar CLI and UI Framework. It provides an introduction to web development and shows what MIDATA is and how to set up an application on the MIDATA test server. It also includes a small MIDATA application that showcases the OAuth 2.0 authentication process and implements basic functionality of the npm package [JSonFhir](https://www.npmjs.com/package/@i4mi/js-on-fhir).
+This project is a demo application that takes the [MIDATA demonstration application from the i4mi](https://github.com/i4mi/midata-quasar-starter-app) (no official release, version as of Mar 21, 2022) and combines it with the [Matrix network](https://matrix.org/) by utilizing and integrating the [Hydrogen web client](https://github.com/vector-im/hydrogen-web) v.0.2.26 as a proof of concept.
+
+The goal is to create a modular system to use with MIDATA that enables you to login with a MIDATA account and securely communicate over the Matrix network for patient - doctor, patient - patient or patient - coach communication. The idea is to create a secure platform which with future updates allows the sharing of health care data available in MIDATA through chat or embedded features.
+
+The installation process and description for this project is taken from the original MIDATA demo app and expanded on to further explain the steps involved in integrating the the Hydrogen web client and the Matrix network.
+
+# Midata Quasar Starter Application (Demo App)
+
+The base for this application is a starter/demo application created with the Quasar CLI and UI Framework. It provides an introduction to web development and shows what MIDATA is and how to set up an application on the MIDATA test server. It also includes a small MIDATA application that showcases the OAuth 2.0 authentication process and implements basic functionality of the npm package [JSonFhir](https://www.npmjs.com/package/@i4mi/js-on-fhir).
 
 This starter/demo application is aimed at students and interested parties who are planning to develop a web application with MIDATA. It should give a first insight into the subjects.
 
@@ -40,7 +48,8 @@ npm install npm -g
 ```
 
 ### Repository
-To download the repo from github, use `git clone https://github.com/i4mi/midata-quasar-starter-app.git` in your terminal.
+To download the original demo app from github, use `git clone https://github.com/i4mi/midata-quasar-starter-app.git` in your terminal.
+To download this project, use `git clone https://github.com/SibCode/cardiopeer.git` in your terminal.
 
 ### Install the dependencies
 Then change the directory with `cd midata-quasar-starter-app` and install the dependencies.
@@ -68,7 +77,7 @@ npx quasar build
 The production build of the app can be deployed automatically to the GitHub Pages by using the GitHub Actions.
 A workflow is already implemented, it just needs a few settings. You can also adjust it to your own needs (for example linting on development branch).
 
-After correct setup, the workflow deploys the app when you push to a branch **main**. When you use **master** see the corresponding setting below. When changes are detected the workflow pushes the generated build files to a branch **gh-pages**. There the files are picked up by a GitHub-internal job and published to a public, repository specific domain. For this repository it is: https://i4mi.github.io/midata-quasar-starter-app/
+After correct setup, the workflow deploys the app when you push to a branch **main**. When you use **master** see the corresponding setting below. When changes are detected the workflow pushes the generated build files to a branch **gh-pages**. Make sure that the branch **gh-pages** is available in your project. There the files are picked up by a GitHub-internal job and published to a public, repository specific domain. For this repository it is: https://sibcode.github.io/cardiopeer/#/
 
 #### Check publicPath
 When the app is served in a subdirectory (bla.com/pizza/ instead of bla.com), which is the case for the GitHub Pages, you need to set the variable **publicPath** in **quasar.conf.js** to the name of the subdirectory (corresponds to your repository name).
