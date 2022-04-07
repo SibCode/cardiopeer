@@ -1,23 +1,23 @@
 <template>
     <matrix-login v-if="!$matrix.isLoggedIn()"></matrix-login>
-    <div v-if="$matrix.isLoggedIn()">
+    <q-page v-if="$matrix.isLoggedIn()">
+      <div>
         Matrix Demo Seite funktioniert!
         <q-btn color="purple" label="Test" @click="() => testfunction()"/>
-    <q-btn
-        color="black"
-        label="Logout"
-        icon="logout"
-        rounded
-        outline
-        @click="logout()"
-        class="gt-xs"
-      />
-    </div>
-    
+      <q-btn
+          color="black"
+          label="Logout"
+          icon="logout"
+          rounded
+          outline
+          @click="logout()"
+          class="gt-xs"
+        />
+      </div>
+    </q-page>
 </template>
 
 <script lang="ts">
-import {MatrixConfiguration} from '../../boot/MatrixConfiguration';
 import {defineComponent} from 'vue';
 import MatrixLogin from '../../components/MatrixLogin.vue'
 

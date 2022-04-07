@@ -1,12 +1,14 @@
-//import {MatrixClient, createClient, IndexedDBCryptoStore, IndexedDBStore} from 'matrix-js-sdk';
 //import {Observable} from 'rxjs';
 import sdk, { MatrixClient } from 'matrix-js-sdk';
 import { JSOnFhir } from '@i4mi/js-on-fhir';
+import { Patient } from '@i4mi/fhir_r4';
 import {MatrixConfiguration} from '../boot/MatrixConfiguration';
 
 export default class MatrixChatService {
     jsOnFhir: JSOnFhir;
     mtxClient: MatrixClient;
+
+    private patientResource = {} as Patient;
 
     constructor (){
         this.jsOnFhir = new JSOnFhir(
@@ -15,6 +17,11 @@ export default class MatrixChatService {
             MatrixConfiguration.FHIR_REDIRECT_URL
         );
         this.mtxClient = sdk.createClient(MatrixConfiguration.HOMESERVER_URL);
+        this.patientResource = null;
+
+        //Testing Config
+        console.log('MIDATA Config: ', MatrixConfiguration)
+        console.log(this.jsOnFhir);
     }
 
     /**
@@ -72,7 +79,6 @@ export default class MatrixChatService {
      * @param params 
      */
     private loginMatrix(): void{
-        console.log('i am the matrix login function');
         //TODO Authentication testing
         this.mtxClient.login('m.login.password', {'user': '@frida.meyer:cardiopeer.medicaa.ch', 'password': 'test1234'})
             .then(
@@ -89,5 +95,7 @@ export default class MatrixChatService {
         this.loginMatrix();
         console.log('Client: ', this.mtxClient);
         console.log('Accesstoken: ', this.mtxClient.getAccessToken());
+        console.log('JSonFHIR: ', this.jsOnFhir);
+        console.log('Config: ', MatrixConfiguration)
     }
 }
