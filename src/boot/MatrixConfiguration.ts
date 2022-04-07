@@ -10,7 +10,8 @@ const MatrixConfiguration = {
     FHIR_REDIRECT_URL: process.env.VUE_FHIR_REDIRECT_URL,       //Redirect URL for MIDATA
     
     HOMESERVER_URL: 'https://matrix.cardiopeer.medicaa.ch',     //URL of the Matrix-Server
-    ROOM_CRYPTO_CONFIG: {algorithm: 'm.megolm.v1.aes-sha2'}     //Crypto-Algorithm for the Chatrooms
+    ROOM_CRYPTO_CONFIG: {algorithm: 'm.megolm.v1.aes-sha2'},     //Crypto-Algorithm for the Chatrooms
+    STORAGE_KEY: 'cardiopeer-storage'                          //Storage Key for persisting MIDATA-Data
 };
 
 export {MatrixConfiguration};

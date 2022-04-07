@@ -1,14 +1,15 @@
 //import {Observable} from 'rxjs';
 import sdk, { MatrixClient } from 'matrix-js-sdk';
 import { JSOnFhir } from '@i4mi/js-on-fhir';
-import { Patient } from '@i4mi/fhir_r4';
+import { Patient, Bundle } from '@i4mi/fhir_r4';
 import {MatrixConfiguration} from '../boot/MatrixConfiguration';
 
 export default class MatrixChatService {
     jsOnFhir: JSOnFhir;
     mtxClient: MatrixClient;
-
+    //MIDATA Variables
     private patientResource = {} as Patient;
+    private currentLanguage = 'de';
 
     constructor (){
         this.jsOnFhir = new JSOnFhir(
@@ -17,7 +18,7 @@ export default class MatrixChatService {
             MatrixConfiguration.FHIR_REDIRECT_URL
         );
         this.mtxClient = sdk.createClient(MatrixConfiguration.HOMESERVER_URL);
-        this.patientResource = null;
+        this.restoreFromStorage();
 
         //Testing Config
         console.log('MIDATA Config: ', MatrixConfiguration)
@@ -80,7 +81,7 @@ export default class MatrixChatService {
      */
     private loginMatrix(): void{
         //TODO Authentication testing
-        this.mtxClient.login('m.login.password', {'user': '@frida.meyer:cardiopeer.medicaa.ch', 'password': 'test1234'})
+        this.mtxClient.login('m.login.password', {'user': '@frida.meyer:cardiopeer.medicaa.ch', 'password': ''})
             .then(
                 (response) => {
                     console.log(response.access_token);
@@ -97,5 +98,74 @@ export default class MatrixChatService {
         console.log('Accesstoken: ', this.mtxClient.getAccessToken());
         console.log('JSonFHIR: ', this.jsOnFhir);
         console.log('Config: ', MatrixConfiguration)
+    }
+
+    /**
+     * Testfunction for MIDATA Data-Transfer
+     */
+    testPatientData(): void{
+        console.log('this storage json', this);
+    }
+
+    /**
+     * Gets the patient resource from the fhir endpoint.
+     * @returns patient resource as JSON
+     */
+    getPatientResource(): Promise<Patient>{
+        return new Promise((resolve, reject) => {
+            this.jsOnFhir
+              .search('Patient', { _id: this.jsOnFhir.getPatient() })
+              .then((result) => {
+                const patientBundle = result as Bundle;
+                (patientBundle.entry?.length !== undefined && patientBundle.entry?.length > 0 && patientBundle.entry[0].resource)
+                  ? resolve(patientBundle.entry[0].resource as Patient)
+                  : reject('No entry in patient bundle found!');
+              })
+              .catch((error) => reject(error));
+          });
+    }
+
+    /**
+     * Persists data to sessionStorage.
+     */
+    private persist(): void {
+        sessionStorage.setItem(MatrixConfiguration.STORAGE_KEY, JSON.stringify(this));
+    }
+
+    /**
+     * Restores data from sessionStorage.
+     */
+    private restoreFromStorage(): void {
+        const persisted = sessionStorage.getItem(MatrixConfiguration.STORAGE_KEY);
+        if (persisted) {
+            const storage = JSON.parse(persisted);
+            this.patientResource = storage.patientResource;
+        } else if (this.isLoggedIn()) {
+        void this.restoreFromMidata();
+        } else {
+        console.log('Could not restore from storage. Log in first.');
+        }
+    }
+
+    /**
+     *
+     * @returns a promise:
+     *              - if successfull ->
+     *              - if not successfull ->
+     */
+    public restoreFromMidata(): Promise<void> {
+        return new Promise((resolve, reject) => {
+
+        this.getPatientResource()
+            .then((results) => {
+                this.patientResource = results;
+                this.persist();
+                resolve();
+            })
+            .catch((error) => {
+                console.warn('Error', error);
+                reject(error);
+            });
+        });
     }
 }
