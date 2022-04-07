@@ -3,11 +3,14 @@ import { boot } from 'quasar/wrappers';
 // Import Storage, MidataService and moment
 import Storage from 'src/plugins/storage';
 import MidataService from 'src/plugins/midataService';
+import MatrixChatService from 'src/plugins/MatrixChatService'
 import moment from 'moment';
 
 // Create MidataService and Storage
 const midata = new MidataService();
 const storage = new Storage(midata);
+//Create MatrixService
+const matrix = new MatrixChatService();
 
 // Type declaration
 declare module '@vue/runtime-core' {
@@ -15,6 +18,7 @@ declare module '@vue/runtime-core' {
     $midata: typeof midata;
     $storage: typeof storage;
     $moment: typeof moment;
+    $matrix: typeof matrix;
   }
 }
 
@@ -23,6 +27,7 @@ export default boot(({ app }) => {
   app.config.globalProperties.$midata = midata;
   app.config.globalProperties.$storage = storage;
   app.config.globalProperties.$moment = moment;
+  app.config.globalProperties.$matrix = matrix;
 });
 
-export { midata, storage, moment };
+export { midata, storage, moment, matrix };
