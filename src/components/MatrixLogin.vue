@@ -13,7 +13,7 @@
         <q-btn
           flat
           @click="connect()"
-          class="midata-fade full-width"
+          class="matrix-fade full-width"
           color="white"
           >Mit MIDATA verbinden</q-btn
         >
@@ -43,4 +43,10 @@ export default defineComponent({
     display: flex
     justify-content: center
     margin-top: 50px
+</style>
+
+<style lang="css">
+.matrix-fade {
+  background-image: linear-gradient(to bottom right, #000000, #364561);
+}
 </style>
