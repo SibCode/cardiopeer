@@ -19,10 +19,6 @@ export default class MatrixChatService {
         );
         this.mtxClient = sdk.createClient(MatrixConfiguration.HOMESERVER_URL);
         this.restoreFromStorage();
-
-        //Testing Config
-        console.log('MIDATA Config: ', MatrixConfiguration)
-        console.log(this.jsOnFhir);
     }
 
     /**
@@ -55,7 +51,6 @@ export default class MatrixChatService {
      * Handles the login into MIDATA and Matrix
      */
     login(){
-        console.log(MatrixConfiguration)
         this.loginMidata();
         this.loginMatrix();
     }
@@ -90,7 +85,7 @@ export default class MatrixChatService {
     }
 
     /**
-     * Testfunction for controlling
+     * Testfunction for controlling Matrixlogin
      */
     consoleMtxClient(){
         this.loginMatrix();
@@ -103,8 +98,8 @@ export default class MatrixChatService {
     /**
      * Testfunction for MIDATA Data-Transfer
      */
-    testPatientData(): void{
-        console.log('this storage json', this);
+    checkStorage(): void{
+        console.log('Cardiopeer Storage', this);
     }
 
     /**
@@ -141,21 +136,20 @@ export default class MatrixChatService {
             const storage = JSON.parse(persisted);
             this.patientResource = storage.patientResource;
         } else if (this.isLoggedIn()) {
-        void this.restoreFromMidata();
+            void this.restoreFromMidata();
         } else {
-        console.log('Could not restore from storage. Log in first.');
+            console.log('Could not restore from storage. Log in first.');
         }
     }
 
     /**
-     *
+     * Gets Patient-Resource for the logged in Patient from MIDATA and saves it to the Storage
      * @returns a promise:
      *              - if successfull ->
      *              - if not successfull ->
      */
     public restoreFromMidata(): Promise<void> {
         return new Promise((resolve, reject) => {
-
         this.getPatientResource()
             .then((results) => {
                 this.patientResource = results;

@@ -4,7 +4,7 @@
       <div>
         Matrix Demo Seite funktioniert!
         <q-btn color="purple" label="Test" @click="() => testfunction()"/>
-        <q-btn color="purple" label="Daten" @click="() => patientMidata()"/>
+        <q-btn color="purple" label="Daten" @click="() => checkStorage()"/>
       <q-btn
           color="black"
           label="Logout"
@@ -33,8 +33,8 @@ export default defineComponent({
     testfunction(){
         this.$matrix.consoleMtxClient();
     },
-    patientMidata(){
-      this.$matrix.testPatientData();
+    checkStorage(){
+      this.$matrix.checkStorage();
     },
     logout(){
         this.$matrix.logout();
