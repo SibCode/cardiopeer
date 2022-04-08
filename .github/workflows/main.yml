@@ -20,8 +20,8 @@ jobs:
         
     - name: Install dependencies
       run: |
-        npm install --save matrix-js-sdk
         npm i --no-progress
+        npm install --save matrix-js-sdk
 
     - name: Build app
       run: npm run build
