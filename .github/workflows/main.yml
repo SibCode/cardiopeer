@@ -32,7 +32,7 @@ jobs:
         rm -r dist/spa
 
     - name: Checkout gh-pages branch
-      run: git checkout gh-pages
+      run: git checkout -f gh-pages # Forcing commit for now, setting package dependencies / versions later
 
     - name: Remove old and unneccessary files
       run: |
