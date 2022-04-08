@@ -28,7 +28,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/boot-files
-    boot: ['i18n', 'plugins', 'highlight'],
+    boot: ['i18n', 'plugins', 'highlight', 'MatrixConfiguration'],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
     css: ['app.scss'],
@@ -53,7 +53,7 @@ module.exports = configure(function (ctx) {
 
       // transpile: false,
       publicPath: process.env.NODE_ENV === 'production'
-        ? '/midata-quasar-starter-app/' // necessary if you serve app on GitHub pages, corresponds to repository name
+        ? '/cardiopeer/' // necessary if you serve app on GitHub pages, corresponds to repository name
         : '/',
 
       // Add dependencies for transpiling with Babel (Array of string/regex)

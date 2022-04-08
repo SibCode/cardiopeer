@@ -19,7 +19,9 @@ jobs:
         git config --global user.email "${GITHUB_ACTOR}@bots.github.com"
         
     - name: Install dependencies
-      run: npm i --no-progress
+      run: |
+        npm i --no-progress
+        npm install --save matrix-js-sdk
 
     - name: Build app
       run: npm run build
@@ -30,7 +32,7 @@ jobs:
         rm -r dist/spa
 
     - name: Checkout gh-pages branch
-      run: git checkout gh-pages
+      run: git checkout -f gh-pages # Forcing commit for now, setting package dependencies / versions later
 
     - name: Remove old and unneccessary files
       run: |
