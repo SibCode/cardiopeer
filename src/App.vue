@@ -13,21 +13,21 @@ export default defineComponent({
       this.$storage.setCurrentLanguage(_lang);
     },
     logout(): void {
-      if (this.$midata.isLoggedIn()) {
-        this.$midata.logout();
+      if (this.$matrix.isLoggedIn()) {
+        this.$matrix.logout();
       }
     },
   },
   mounted() {
     this.$i18n.locale = this.$storage.getCurrentLanguage();
     this.setLanguage(this.$i18n.locale);
-    this.$midata
+    this.$matrix
       .handleAuthResponse()
       .then((response: any) => {
-        if (response && this.$midata.isLoggedIn()) {
+        if (response && this.$matrix.isLoggedIn()) {
           Promise.all([
-            this.$storage.restoreFromMidata(),
-            this.$midata.getPatientResource(),
+            this.$matrix.restoreFromMidata(),
+            this.$matrix.getPatientResource(),
           ])
             .then((results) => {
               const preferredCom = results[1].communication.find((coms) => {
@@ -42,11 +42,14 @@ export default defineComponent({
               this.$router.push('/matrix/demo');
             })
             .catch();
-        } else if (this.$midata.isLoggedIn()) {
-          this.$storage.restoreFromMidata();
+        } else if (this.$matrix.isLoggedIn()) {
+          this.$matrix.restoreFromMidata();
         }
       })
-      .catch();
+      .catch((error) =>{
+        console.log('Error: ',error);
+        console.log('Stack: ', error.stack)
+      });
   },
 });
 </script>

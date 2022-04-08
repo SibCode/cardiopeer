@@ -21,6 +21,7 @@ export default class MatrixChatService {
         this.restoreFromStorage();
     }
 
+
     /**
      * Returns the jsOnFhir object for making direct method calls.
      * @returns the jsOnFhir as JSON.
@@ -52,7 +53,7 @@ export default class MatrixChatService {
      */
     login(){
         this.loginMidata();
-        this.loginMatrix();
+        //this.loginMatrix();
     }
 
     /**
@@ -124,7 +125,14 @@ export default class MatrixChatService {
      * Persists data to sessionStorage.
      */
     private persist(): void {
-        sessionStorage.setItem(MatrixConfiguration.STORAGE_KEY, JSON.stringify(this));
+        sessionStorage.setItem(MatrixConfiguration.STORAGE_KEY, 
+            JSON.stringify({
+                currentLanguage: this.currentLanguage,
+                patientResource: this.patientResource,
+                midata: {
+                    jsOnFhir: this.jsOnFhir
+                }
+            }));
     }
 
     /**
@@ -134,6 +142,7 @@ export default class MatrixChatService {
         const persisted = sessionStorage.getItem(MatrixConfiguration.STORAGE_KEY);
         if (persisted) {
             const storage = JSON.parse(persisted);
+            this
             this.patientResource = storage.patientResource;
         } else if (this.isLoggedIn()) {
             void this.restoreFromMidata();
