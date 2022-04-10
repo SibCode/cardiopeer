@@ -10,24 +10,27 @@ export default defineComponent({
     setLanguage(_lang: string): void {
       this.$i18n.locale = _lang;
       this.$moment.locale(_lang === 'de' ? 'de-ch' : 'fr-ch');
-      this.$storage.setCurrentLanguage(_lang);
+      //this.$storage.setCurrentLanguage(_lang);
     },
     logout(): void {
-      if (this.$matrix.isLoggedIn()) {
-        this.$matrix.logout();
+      if (this.$cardiopeer_midata.isLoggedIn()) {
+        this.$cardiopeer_midata.logout();
+      }
+      if (this.$cardiopeer_matrix.isLoggedIn()){
+        this.$cardiopeer_matrix.logout();
       }
     },
   },
   mounted() {
     this.$i18n.locale = this.$storage.getCurrentLanguage();
     this.setLanguage(this.$i18n.locale);
-    this.$matrix
+    this.$cardiopeer_midata
       .handleAuthResponse()
       .then((response: any) => {
-        if (response && this.$matrix.isLoggedIn()) {
+        if (response && this.$cardiopeer_midata.isLoggedIn()) {
           Promise.all([
-            this.$matrix.restoreFromMidata(),
-            this.$matrix.getPatientResource(),
+            this.$cardiopeer_storage.restoreFromMidata(),
+            this.$cardiopeer_midata.getPatientResource(),
           ])
             .then((results) => {
               const preferredCom = results[1].communication.find((coms) => {
@@ -42,8 +45,8 @@ export default defineComponent({
               this.$router.push('/matrix/demo');
             })
             .catch();
-        } else if (this.$matrix.isLoggedIn()) {
-          this.$matrix.restoreFromMidata();
+        } else if (this.$cardiopeer_midata.isLoggedIn()) {
+          this.$cardiopeer_storage.restoreFromMidata();
         }
       })
       .catch((error) =>{

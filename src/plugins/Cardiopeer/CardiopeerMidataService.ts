@@ -22,11 +22,28 @@ export default class CardiopeerMidataService {
     }
 
     /**
+     * Initiates the oAuth process.
+     * @param params
+     */
+    public authenticate(params?: Record<string, unknown>): void {
+        this.jsOnFhir.authenticate(params);
+    }
+
+    /**
      * Checks that the token isn't empty and hasn't expired yet. Therefore returns the status of the login status.
      * @returns true if the user is logged in (token valid and not expired yet) and false otherwise.
      */
     public isLoggedIn(): boolean {
         return this.jsOnFhir.isLoggedIn();
+    }
+    
+    
+    /**
+     * Logs the user out by resetting authentification details.
+     */
+     public logout(){
+        console.log('lougout');
+        this.jsOnFhir.logout();
     }
 
     /**
@@ -55,16 +72,5 @@ export default class CardiopeerMidataService {
               })
               .catch((error) => reject(error));
           });
-    }
-
-    /**
-     * Logs the user out by resetting authentification details.
-     */
-    public logout(){
-        try {
-            this.jsOnFhir.logout();
-        } catch (error) {
-            console.error('Error while logging out of MIDATA', error);
-        }
     }
 }

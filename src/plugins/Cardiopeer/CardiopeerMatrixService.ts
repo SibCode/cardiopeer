@@ -1,21 +1,17 @@
 //import {Observable} from 'rxjs';
-import sdk, { MatrixClient } from 'matrix-js-sdk';
+import sdk, { MatrixClient, User } from 'matrix-js-sdk';
 import {MatrixConfiguration} from '../../boot/MatrixConfiguration';
 import CardiopeerMidataService from './CardiopeerMidataService';
-import CardiopeerStorage from './CardiopeerStorage';
 
 export default class CardiopeerMatrixService {
-    midataService: CardiopeerMidataService;
-    storage: CardiopeerStorage;
     mtxClient: MatrixClient;
     private loggedIn: boolean;
     //MIDATA Variables
+    midataClient: CardiopeerMidataService;
     
-
-    constructor (){
-        this.midataService = new CardiopeerMidataService();
+    constructor (midataService: CardiopeerMidataService){
         this.mtxClient = this.initiateMatrixClient();
-        this.storage = new CardiopeerStorage(this.midataService, this);
+        this.midataClient = midataService;
         this.loggedIn = false;
     }
 
@@ -28,43 +24,36 @@ export default class CardiopeerMatrixService {
     }
 
     /**
-     * Handles the response of oAuth portal (server).
-     * @returns a promise:
-     *              - if successfull -> response of the oAuth portal (server) includes: token, refreshtoken etc.
-     *              - if not successfull -> error response.
-     */
-    public handleAuthResponse(): Promise<any> {
-        return this.midataService.handleAuthResponse();
-    }
-
-    /**
      * Handles the OAuth2 login into MIDATA and Matrix
      */
-    login(){
+    public login(){
         //TODO Authentication testing
         try {
-            document.location.href = (this.mtxClient.getSsoLoginUrl(document.location.href, 'sso', 'oidc-midata'));
+            //this.midataClient.authenticate();
+            document.location.href = this.mtxClient.getSsoLoginUrl(document.location.href, 'sso', 'oidc-midata');
         } catch (error) {
             console.error('Error while logging into MIDATA / Matrix', error);
         }
     }
 
     /**
-     * Logs the user out by resetting authentification details.
+     * Checks if there is a open Matrix Session
+     * @returns True if Login is active, false if not
      */
-    public logout(): void {
-        try {
-            this.midataService.logout();
-            this.mtxClient.logout();
-        } catch (error) {
-            console.error('Error while logging out of MIDATA / Matrix', error);
-        }
+    public isLoggedIn(): boolean{
+        return this.loggedIn;
     }
 
     /**
-     * Testfunction for MIDATA Data-Transfer
+     * Logs the user out by resetting authentification details.
      */
-    checkStorage(): void{
-        console.log('Cardiopeer MatrixChatService', this);
+    public logout(): void {
+        this.mtxClient.logout();
+    }
+
+    public findUser(id: string): User{
+        const user = this.mtxClient.getUser(id);
+        console.log(user);
+        return user;
     }
 }

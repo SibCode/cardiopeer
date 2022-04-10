@@ -29,7 +29,7 @@ export default defineComponent({
   name: 'MatrixLogin',
   methods: {
     connect() {
-        this.$matrix.login();
+        this.$cardiopeer_matrix.login();
     },
   },
 });
