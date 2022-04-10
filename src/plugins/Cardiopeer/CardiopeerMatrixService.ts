@@ -29,8 +29,8 @@ export default class CardiopeerMatrixService {
     public login(){
         //TODO Authentication testing
         try {
-            //this.midataClient.authenticate();
-            document.location.href = this.mtxClient.getSsoLoginUrl(document.location.href, 'sso', 'oidc-midata');
+            this.midataClient.authenticate();
+            //document.location.href = this.mtxClient.getSsoLoginUrl(document.location.href, 'sso', 'oidc-midata');
         } catch (error) {
             console.error('Error while logging into MIDATA / Matrix', error);
         }
