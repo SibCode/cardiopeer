@@ -2,10 +2,10 @@
   <div class="container">
     <q-card class="card">
       <q-card-section>
-        <div class="text-h4 text-weight-thin">MIDATA Login</div>
+        <div class="text-h4 text-weight-thin">Cardiopeer Login</div>
         <div class="text-body1">
           Damit sie den Chat verwenden können, müssen Sie sich zuerst
-          bei MIDATA einloggen/registrieren.
+          einloggen/registrieren.
         </div>
       </q-card-section>
       <q-separator inset />
@@ -15,7 +15,7 @@
           @click="connect()"
           class="matrix-fade full-width"
           color="white"
-          >Mit MIDATA verbinden</q-btn
+          >Login</q-btn
         >
       </q-card-actions>
     </q-card>
@@ -29,7 +29,7 @@ export default defineComponent({
   name: 'MatrixLogin',
   methods: {
     connect() {
-        this.$matrix.login();
+        this.$cardiopeer_matrix.login();
     },
   },
 });

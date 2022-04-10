@@ -74,11 +74,11 @@ module.exports = configure(function (ctx) {
           ? 'https://test.midata.coop'
           : 'https://test.midata.coop',
         VUE_FHIR_APP_NAME: ctx.dev
-          ? 'midata_quasar_starter_app'
-          : 'midata_quasar_starter_app',
+          ? 'cardiopeer_matrix'
+          : 'cardiopeer_matrix',
         VUE_FHIR_REDIRECT_URL: ctx.dev
-          ? 'http://localhost:8080/#/midata/demo'
-          : 'https://i4mi.github.io/midata-quasar-starter-app/#/midata/demo', // enter here production url for midata redirect, this url also has to be declared in the Midata app declaration
+          ? 'http://localhost:8080/#/matrix/demo'
+          : 'https://sibcode.github.io/cardiopeer/#/matrix/demo', // enter here production url for midata redirect, this url also has to be declared in the Midata app declaration
       },
 
       // https://quasar.dev/quasar-cli/handling-webpack
