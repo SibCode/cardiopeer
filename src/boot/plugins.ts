@@ -3,7 +3,7 @@ import { boot } from 'quasar/wrappers';
 // Import Storage, MidataService and moment
 import Storage from 'src/plugins/storage';
 import MidataService from 'src/plugins/midataService';
-import MatrixChatService from 'src/plugins/MatrixChatService'
+import MatrixChatService from 'src/plugins/Cardiopeer/CardiopeerMatrixService'
 import moment from 'moment';
 
 // Create MidataService and Storage
