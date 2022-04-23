@@ -2,6 +2,11 @@ import { JSOnFhir } from '@i4mi/js-on-fhir';
 import { Patient, Bundle } from '@i4mi/fhir_r4';
 import { MatrixConfiguration } from 'src/boot/MatrixConfiguration';
 
+/**
+ * Midata Service Functions
+ * As of the new specifications these won't be used for the use-case implemented in this project
+ * as the code is already written, the existing methods are left here
+ */
 export default class CardiopeerMidataService {
     private jsOnFhir: JSOnFhir;
 

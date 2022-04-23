@@ -3,6 +3,10 @@ import sdk, { MatrixClient, User } from 'matrix-js-sdk';
 import {MatrixConfiguration} from '../../boot/MatrixConfiguration';
 import CardiopeerMidataService from './CardiopeerMidataService';
 
+/**
+ * CardiopeerMatrixService
+ * The main service implementing the matrix functionality
+ */
 export default class CardiopeerMatrixService {
     mtxClient: MatrixClient;
     private loggedIn: boolean;
@@ -29,8 +33,8 @@ export default class CardiopeerMatrixService {
     public login(){
         //TODO Authentication testing
         try {
-            this.midataClient.authenticate();
-            //document.location.href = this.mtxClient.getSsoLoginUrl(document.location.href, 'sso', 'oidc-midata');
+            // this.midataClient.authenticate();
+            document.location.href = this.mtxClient.getSsoLoginUrl(document.location.href, 'sso', 'oidc-midata');
         } catch (error) {
             console.error('Error while logging into MIDATA / Matrix', error);
         }
