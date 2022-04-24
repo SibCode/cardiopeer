@@ -70,6 +70,12 @@ module.exports = configure(function (ctx) {
       // Options below are automatically set depending on the env, set them if you want to override
       // extractCSS: false,
       env: {
+        VUE_STORAGE_KEY: ctx.dev
+          ? 'cardiopeer-storage'
+          : 'cardiopeer-storage',
+        VUE_MATRIX_HOMESERVER_URL: ctx.dev
+          ? 'https://matrix.cardiopeer.medicaa.ch'
+          : 'https://matrix.cardiopeer.medicaa.ch',
         VUE_FHIR_BASE_URL: ctx.dev
           ? 'https://test.midata.coop'
           : 'https://test.midata.coop',

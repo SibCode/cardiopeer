@@ -1,6 +1,5 @@
 //import {Observable} from 'rxjs';
 import sdk, { MatrixClient, User } from 'matrix-js-sdk';
-import {MatrixConfiguration} from '../../boot/MatrixConfiguration';
 import CardiopeerMidataService from './CardiopeerMidataService';
 
 /**
@@ -24,7 +23,7 @@ export default class CardiopeerMatrixService {
      * @returns MatrixClient Object to handle Communication with Matrix Server
      */
     private initiateMatrixClient (): MatrixClient {
-        return sdk.createClient(MatrixConfiguration.HOMESERVER_URL);
+        return sdk.createClient(process.env.VUE_MATRIX_HOMESERVER_URL);
     }
 
     /**
@@ -44,7 +43,7 @@ export default class CardiopeerMatrixService {
      * Checks if there is a open Matrix Session
      * @returns True if Login is active, false if not
      */
-    public isLoggedIn(): boolean{
+    public isLoggedIn(): boolean {
         return this.loggedIn;
     }
 
@@ -55,7 +54,7 @@ export default class CardiopeerMatrixService {
         this.mtxClient.logout();
     }
 
-    public findUser(id: string): User{
+    public findUser(id: string): User {
         const user = this.mtxClient.getUser(id);
         console.log(user);
         return user;

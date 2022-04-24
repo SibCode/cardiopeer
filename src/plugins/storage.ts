@@ -5,6 +5,7 @@ import { Notify } from 'quasar';
 const STORAGE_KEY = 'demo-app-storage';
 
 export default class Storage {
+
   private currentLanguage = 'de';
   private observations = new Array<Observation>();
   private patientResource = {} as Patient;
@@ -112,7 +113,7 @@ export default class Storage {
 
   /**
    * Creates a new Observation
-   * @param _status
+   * @param _status 
    * @param bodySite
    * @param value
    * @returns

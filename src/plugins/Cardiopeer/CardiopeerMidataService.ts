@@ -1,6 +1,5 @@
 import { JSOnFhir } from '@i4mi/js-on-fhir';
 import { Patient, Bundle } from '@i4mi/fhir_r4';
-import { MatrixConfiguration } from 'src/boot/MatrixConfiguration';
 
 /**
  * Midata Service Functions
@@ -12,9 +11,9 @@ export default class CardiopeerMidataService {
 
     constructor(){
         this.jsOnFhir = new JSOnFhir(
-            MatrixConfiguration.FHIR_BASE_URL,
-            MatrixConfiguration.FHIR_APP_NAME,
-            MatrixConfiguration.FHIR_REDIRECT_URL
+            process.env.VUE_FHIR_BASE_URL,
+            process.env.VUE_FHIR_APP_NAME,
+            process.env.VUE_FHIR_REDIRECT_URL
         );
     }
 

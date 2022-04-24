@@ -1,7 +1,5 @@
-import { MatrixConfiguration } from 'src/boot/MatrixConfiguration';
 import { Patient } from '@i4mi/fhir_r4';
 import CardiopeerMidataService from './CardiopeerMidataService';
-import CardiopeerMatrixService from './CardiopeerMatrixService';
 import CardiopeerUser from './CardiopeerUser';
 
 export default class CardiopeerStorage {
@@ -24,7 +22,7 @@ export default class CardiopeerStorage {
         this.cardiopeer_user = new CardiopeerUser();
         this.cardiopeer_user.setUserID(this.getPatientUserID());
         this.cardiopeer_user.setName(this.getPatientName());
-        this.cardiopeer_user.setHomeServer(MatrixConfiguration.HOMESERVER_URL);
+        this.cardiopeer_user.setHomeServer(process.env.VUE_MATRIX_HOMESERVER_URL);
         this.cardiopeer_user.setEmail(this.getPatientEmail());
         this.cardiopeer_user.setMatrixAlias(this.generateMatrixAlias(this.cardiopeer_user.getName(), this.cardiopeer_user.getHomeServer()));
     }
@@ -84,7 +82,7 @@ export default class CardiopeerStorage {
      * Persists data to sessionStorage.
      */
      private persist(): void {
-        sessionStorage.setItem(MatrixConfiguration.STORAGE_KEY, 
+        sessionStorage.setItem(process.env.VUE_STORAGE_KEY, 
             JSON.stringify({
                 currentLanguage: this.currentLanguage,
                 patientResource: this.patientResource,
@@ -105,7 +103,7 @@ export default class CardiopeerStorage {
      * Restores data from sessionStorage.
      */
      private restoreFromStorage(): void {
-        const persisted = sessionStorage.getItem(MatrixConfiguration.STORAGE_KEY);
+        const persisted = sessionStorage.getItem(process.env.VUE_STORAGE_KEY);
         if (persisted) {
             const storage = JSON.parse(persisted);
             this.cardiopeer_user = storage.cardiopeer_user;
