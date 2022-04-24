@@ -1,5 +1,6 @@
 import { Patient } from '@i4mi/fhir_r4';
 import CardiopeerMidataService from './CardiopeerMidataService';
+import CardiopeerMatrixService from './CardiopeerMatrixService';
 import CardiopeerUser from './CardiopeerUser';
 
 export default class CardiopeerStorage {
