@@ -34,6 +34,7 @@ export default class CardiopeerMatrixService {
         try {
             // this.midataClient.authenticate();
             document.location.href = this.mtxClient.getSsoLoginUrl(document.location.href, 'sso', 'oidc-midata');
+            this.loggedIn = true;
         } catch (error) {
             console.error('Error while logging into MIDATA / Matrix', error);
         }
@@ -51,7 +52,12 @@ export default class CardiopeerMatrixService {
      * Logs the user out by resetting authentification details.
      */
     public logout(): void {
-        this.mtxClient.logout();
+        try {
+            this.mtxClient.logout();
+            this.loggedIn = false;
+        } catch (error) {
+            console.error('Error while logging out of MIDATA / Matrix', error);
+        }
     }
 
     public findUser(id: string): User {
