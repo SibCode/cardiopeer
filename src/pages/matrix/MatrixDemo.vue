@@ -1,6 +1,6 @@
 <template>
-    <matrix-login v-if="!$cardiopeer_midata.isLoggedIn()"></matrix-login>
-    <q-page v-if="$cardiopeer_midata.isLoggedIn()">
+    <matrix-login v-if="!$cardiopeer_matrix.isLoggedIn()"></matrix-login>
+    <q-page v-if="$cardiopeer_matrix.isLoggedIn()">
       <div>
         Matrix Demo Seite funktioniert!
         <q-btn color="purple" label="Login" @click="() => login()"/>

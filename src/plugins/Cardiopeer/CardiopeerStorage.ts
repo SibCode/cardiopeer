@@ -64,6 +64,7 @@ export default class CardiopeerStorage {
 
     /**
      * Generates the Username for the Matrix Server
+     * TODO: Handle Unicode exceptions (ü -> c3 bc and in matrix =c3=bc)
      * @param patientName Patientname (Format Given + Family Name)
      * @param homeServer Homeserver (Full URL)
      * @returns Matrix Server Alias (Format @given.family:homeserver)
@@ -74,7 +75,7 @@ export default class CardiopeerStorage {
         return '@' 
         + splitName[0].toLowerCase() 
         + '.' 
-        + splitName[1].toLowerCase()  
+        + splitName[1].toLowerCase().replace('ü', '=c3=bc')  
         + ':' 
         + homeServer.replace('https://', '').toLowerCase();
     }
