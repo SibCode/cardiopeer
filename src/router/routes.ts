@@ -63,6 +63,13 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/matrix/hydrogen',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/matrix/HydrogenDemo.vue') },
+    ],
+  },
+  {
     path: '/internationalization',
     component: () => import('layouts/MainLayout.vue'),
     children: [

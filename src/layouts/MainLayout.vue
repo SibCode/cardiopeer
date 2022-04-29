@@ -10,9 +10,9 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-        <q-toolbar-title> Demo App Herzpatientenchat </q-toolbar-title>
+        <q-toolbar-title> Cardiopeer </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>Demo</div>
       </q-toolbar>
     </q-header>
 
@@ -128,6 +128,11 @@ const matrixLinksList = [
     title: 'Matrix Demo',
     icon: 'manage_accounts',
     link: '/matrix/demo'
+  },
+  {
+    title: 'Hydrogen Demo',
+    icon: 'droplet',
+    link: '/matrix/hydrogen'
   }
 ]
 
