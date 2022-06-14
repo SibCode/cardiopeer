@@ -10,3 +10,4 @@ declare namespace NodeJS {
     VUE_FHIR_REDIRECT_URL: string;
   }
 }
+declare module "hydrogen-view-sdk";
