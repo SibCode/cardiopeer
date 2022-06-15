@@ -52,9 +52,9 @@ async function start() {
     }).promise;
 
     if (client.loginFailure) {
-        alert("login failed: " + client.loginFailure);
+        alert("login failed: " + String(client.loginFailure));
     } else if (client.loadError) {
-        alert("load failed: " + client.loadError.message);
+        alert("load failed: " + String(client.loadError.message));
     } else {
         const {session} = client;
         // looks for room corresponding to #element-dev:matrix.org, assuming it is already joined
