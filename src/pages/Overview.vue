@@ -7,7 +7,7 @@
     <q-img
       src="../assets/cardiopeer/heart.png"
       fit="contain"
-      class="img-h400"
+      class="img-480"
     ></q-img>
     <p class="text-grey">Bildquelle: Wörterwolke aus bereinigten Transkripten der Befragungen</p>
       <div class="q-qb-sm text-h5">Einführung</div>
@@ -134,6 +134,6 @@ export default defineComponent({
 .img-800
   max-width: 800px
 
-.img-h400
-  max-height: 400px
+.img-480
+  max-width: 480px
 </style>
