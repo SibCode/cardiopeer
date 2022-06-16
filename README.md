@@ -1,8 +1,8 @@
 # Cardiopeer
 
-This project is a demo application that takes the [MIDATA demonstration application from the i4mi](https://github.com/i4mi/midata-quasar-starter-app) (no official release, version as of Mar 21, 2022) and combines it with the [Matrix network](https://matrix.org/) by utilizing and integrating the [Hydrogen web client](https://github.com/vector-im/hydrogen-web) v.0.2.26 as a proof of concept.
+This project is a demo application that takes the [MIDATA demonstration application from the i4mi](https://github.com/i4mi/midata-quasar-starter-app) (no official release, version as of Mar 21, 2022) and combines it with the [Matrix network](https://matrix.org/) by utilizing and integrating the [Hydrogen web client](https://github.com/vector-im/hydrogen-web) v.0.2.26 as a proof of concept. This repository is live available at: https://sibcode.github.io/cardiopeer/#/
 
-The goal is to create a modular system to use with MIDATA that enables you to login with a MIDATA account and securely communicate over the Matrix network for patient - doctor, patient - patient or patient - coach communication. The idea is to create a secure platform which with future updates allows the sharing of health care data available in MIDATA through chat or embedded features.
+The goal is to create a modular system to use with MIDATA that enables you to login with a MIDATA account and securely communicate over the Matrix network for patient to patient communication in the roles of coach and coachee respectively. The idea is to create a secure platform which with future updates allows the sharing of health care data available in MIDATA through chat or embedded features of Matrix.
 
 The installation process and description for this project is taken from the original MIDATA demo app and expanded on to further explain the steps involved in integrating the the Hydrogen web client and with it the Matrix network.
 
