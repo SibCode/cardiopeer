@@ -25,7 +25,7 @@
       
       <div class="text-h6">Schritt 1: Registrierung</div>
       <q-img
-        src=../assets/cardiopeer/step1.png"
+        src="../assets/cardiopeer/step1.png"
         fit="contain"
         class="img-800"
       ></q-img>
