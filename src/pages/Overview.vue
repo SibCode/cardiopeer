@@ -4,6 +4,12 @@
     <q-separator spaced class="midata-fade"></q-separator>
 
     <div class="q-my-xl">
+    <q-img
+      src="../../assets/cardiopeer/heart.png"
+      fit="contain"
+      class="img-800"
+    ></q-img>
+    <p class="text-grey">Bildquelle: Wörterwolke aus bereinigten Transkripten der Befragungen</p>
       <div class="q-qb-sm text-h5">Einführung</div>
       <p>
         Im Rahmen einer Seminararbeit an der Berner Fachhochschule galt es die
