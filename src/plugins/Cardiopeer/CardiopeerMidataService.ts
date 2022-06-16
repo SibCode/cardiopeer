@@ -46,7 +46,7 @@ export default class CardiopeerMidataService {
      * Logs the user out by resetting authentification details.
      */
      public logout(){
-        console.log('lougout');
+        console.log('logout');
         this.jsOnFhir.logout();
     }
 

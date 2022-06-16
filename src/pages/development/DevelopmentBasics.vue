@@ -6,31 +6,18 @@
     <div class="q-my-xl">
       <div class="q-qb-sm text-h5">Einführung</div>
       <p>
-        Im Rahmen einer Seminararbeit gilt es die Einführung eines Chats für
-        Herzpatienten zu testen. Dabei wird auf die 
+        Im Rahmen einer Seminararbeit an der Berner Fachhochschule gilt es die
+        Eingliederung eines Chats für Herzpatienten in eine Applikation zu testen. <br>
+        Durch die Befragung von möglichen Nutzern wurde dafür ein Anwendungsfall konzipiert.
       </p>
-      <div class="text-h6">Was ist Node.js</div>
+      <div class="text-h6">Anwendungsfall</div>
       <p>
-        Node.js ist eine serverseitige, eventbasierte
-        JavaScript-Laufzeitumgebung, die von Entwickler Ryan Dahl als Anwendung
-        für die Entwicklung von skalierbaren Netzwerkanwendungen konzipiert
-        wurde. Seit der Einführung im Jahr 2009 hat Node.js immer mehr an
-        Bekanntheit gewonnen und gehört mittlerweile zu den gefragtesten
-        Anwendungs-Frameworks in der Programmierung.
+        Mit Ihren Zugangsdaten können Sie sich mit dem Chat verbinden. 
       </p>
+      
+      <div class="text-h6">Einbindung von Hydrogen</div>
       <p>
-        Node.js basiert als Anwendung mit seinen Funktionen auf der V8-Engine
-        von Google Chrome. Das bedeutet, dass die gleiche Engine, die in Google
-        Chrome zum Ausführen des JavaScript-Codes eingesetzt wird, auch in
-        Node.js verwendet wird.
-      </p>
-      <p>
-        Selbst wenn das Framework der Anwendung hauptsächlich als
-        Laufzeitumgebung für die Webserver-Programmierung eingesetzt wird,
-        findet es inzwischen auch in anderen Gebieten Verwendung, wie
-        beispielsweise bei der Erstellung von Skripten oder Tools für die
-        Kommandozeile oder bei der Entwicklung von Desktop- oder
-        Echtzeitanwendungen.
+        Die Einbindung von Hydrogen erfolgt über 
       </p>
     </div>
     

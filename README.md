@@ -4,7 +4,100 @@ This project is a demo application that takes the [MIDATA demonstration applicat
 
 The goal is to create a modular system to use with MIDATA that enables you to login with a MIDATA account and securely communicate over the Matrix network for patient - doctor, patient - patient or patient - coach communication. The idea is to create a secure platform which with future updates allows the sharing of health care data available in MIDATA through chat or embedded features.
 
-The installation process and description for this project is taken from the original MIDATA demo app and expanded on to further explain the steps involved in integrating the the Hydrogen web client and the Matrix network.
+The installation process and description for this project is taken from the original MIDATA demo app and expanded on to further explain the steps involved in integrating the the Hydrogen web client and with it the Matrix network.
+
+# Technical Documentation on Hydrogen View SDK Implementation
+
+This documentation is taken and expanded on from [the official hydrogen implementation documentation seen here](https://github.com/vector-im/hydrogen-web/blob/master/doc/SDK.md).
+The Hydrogen view SDK allows developers to integrate parts of the Hydrogen application into the UI of their own application. Hydrogen is written with the MVVM pattern, so to construct a view, you'd first construct a view model, which you then pass into the view. For most view models, you will first need a running client. For this project look at the "Midata Quasar Starter Application (Demo App)" part of this guide to get the client running.
+
+## Embedding the Hydrogen View SDK
+
+The attribute `class="hydrogen"` needs to be added to the element in which the chat should be rendered as the CSS we'll include from the SDK assumes for now that the app is run in an element with this classname. This makes it easy to be embedded in the application.
+
+You'll need to provide the username and password of a user that is already in a room. This application is storing such information in the CardiopeerUser class as an instance after loging in and providing authentification. The idea is to create a room for matched pairs which the hydrogen client that can then provide an instance for the clients to chat. 
+
+```ts
+import {
+    Platform,
+    Client,
+    LoadStatus,
+    createNavigation,
+    createRouter,
+    RoomViewModel,
+    TimelineView,
+    viewClassForTile
+} from "hydrogen-view-sdk";
+import downloadSandboxPath from 'hydrogen-view-sdk/download-sandbox.html?url';
+import workerPath from 'hydrogen-view-sdk/main.js?url';
+import olmWasmPath from '@matrix-org/olm/olm.wasm?url';
+import olmJsPath from '@matrix-org/olm/olm.js?url';
+import olmLegacyJsPath from '@matrix-org/olm/olm_legacy.js?url';
+const assetPaths = {
+    downloadSandbox: downloadSandboxPath,
+    worker: workerPath,
+    olm: {
+        wasm: olmWasmPath,
+        legacyBundle: olmLegacyJsPath,
+        wasmBundle: olmJsPath
+    }
+};
+import "hydrogen-view-sdk/theme-element-light.css";
+// OR import "hydrogen-view-sdk/theme-element-dark.css";
+
+async function main() {
+    const app = document.querySelector<HTMLDivElement>('#app')!
+    const config = {};
+    const platform = new Platform({container: app, assetPaths, config, options: { development: import.meta.env.DEV }});
+    const navigation = createNavigation();
+    platform.setNavigation(navigation);
+    const urlRouter = createRouter({
+        navigation: navigation,
+        history: platform.history
+    });
+    urlRouter.attach();
+    const client = new Client(platform);
+
+    const loginOptions = await client.queryLogin("matrix.org").result;
+    client.startWithLogin(loginOptions.password("username", "password")); // Here you would provide the login credentials provided for the client
+
+    await client.loadStatus.waitFor((status: string) => {
+        return status === LoadStatus.Ready ||
+            status === LoadStatus.Error ||
+            status === LoadStatus.LoginFailed;
+    }).promise;
+
+    if (client.loginFailure) {
+        alert("login failed: " + client.loginFailure);
+    } else if (client.loadError) {
+        alert("load failed: " + client.loadError.message);
+    } else {
+        const {session} = client;
+        // looks for room corresponding to #element-dev:matrix.org, assuming it is already joined
+        const room = session.rooms.get("roomname"); // Here you would add the room created for the peer chat
+        const vm = new RoomViewModel({
+            room,
+            ownUserId: session.userId,
+            platform,
+            urlCreator: urlRouter,
+            navigation,
+        });
+        await vm.load();
+        const view = new TimelineView(vm.timelineViewModel, viewClassForTile);
+        app.appendChild(view.mount());
+    }
+}
+
+main();
+```
+
+## No typescript support (yet)
+
+Typescript support is not yet available while we're converting the Hydrogen codebase to Typescript. Since the Midata Quasar Starter Application basically runs on typescript you need to add a `.d.ts` in the `src` directory. For this project this declaration can be found in the environment declarations (`env.d.ts`). The code snippet to make Typescript not complain that `hydrogen-view-sdk` doesn't have types is the following:
+
+```ts
+declare module "hydrogen-view-sdk";
+```
 
 # Midata Quasar Starter Application (Demo App)
 
