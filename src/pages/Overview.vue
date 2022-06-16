@@ -5,7 +5,7 @@
 
     <div class="q-my-xl">
     <q-img
-      src="../../assets/cardiopeer/heart.png"
+      src="../assets/cardiopeer/heart.png"
       fit="contain"
       class="img-800"
     ></q-img>
@@ -25,7 +25,7 @@
       
       <div class="text-h6">Schritt 1: Registrierung</div>
       <q-img
-        src="../../assets/cardiopeer/step1.png"
+        src=../assets/cardiopeer/step1.png"
         fit="contain"
         class="img-800"
       ></q-img>
@@ -36,7 +36,7 @@
       
       <div class="text-h6">Schritt 2: Anmeldung</div>
       <q-img
-        src="../../assets/cardiopeer/step2.png"
+        src="../assets/cardiopeer/step2.png"
         fit="contain"
         class="img-800"
       ></q-img>
@@ -48,7 +48,7 @@
       
       <div class="text-h6">Schritt 3: Auswahl von Ratgeber</div>
       <q-img
-        src="../../assets/cardiopeer/step3.png"
+        src="../assets/cardiopeer/step3.png"
         fit="contain"
         class="img-800"
       ></q-img>
@@ -60,7 +60,7 @@
       
       <div class="text-h6">Schritt 4: Bestätigung oder Ablehnung durch Ratgeber</div>
       <q-img
-        src="../../assets/cardiopeer/step4.png"
+        src="../assets/cardiopeer/step4.png"
         fit="contain"
         class="img-800"
       ></q-img>
@@ -74,7 +74,7 @@
       
       <div class="text-h6">Schritt 5: Generierung eines privaten Chat-Raums</div>
       <q-img
-        src="../../assets/cardiopeer/step5.png"
+        src="../assets/cardiopeer/step5.png"
         fit="contain"
         class="img-800"
       ></q-img>
@@ -85,7 +85,7 @@
         ob dieser Raum legitim ist, existiert und auch wirklich durch Hydrogen gerendert werden soll. 
       </p>
       <q-img
-        src="../../assets/cardiopeer/step5_0.png"
+        src="../assets/cardiopeer/step5_0.png"
         fit="contain"
         class="img-800"
       ></q-img>
@@ -98,7 +98,7 @@
       
       <div class="text-h6">Schritt 6: Kommunikation über den privaten Chat-Raum</div>
       <q-img
-        src="../../assets/cardiopeer/step6.png"
+        src="../assets/cardiopeer/step6.png"
         fit="contain"
         class="img-800"
       ></q-img>
@@ -129,3 +129,8 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="sass" scoped>
+.img-800
+  max-width: 800px
+</style>
