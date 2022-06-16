@@ -23,9 +23,7 @@ jobs:
         npm i --no-progress
 
     - name: Build app
-      run: | # Of course npx browserslist@latest --update-db needs to be updated on the day I have to hand in this project, let's hope this works
-      npx browserslist@latest --update-db 
-      npm run build
+      run: npm run build
 
     - name: Move app content in hierarchy one folder up to be directly in dist
       run: |
