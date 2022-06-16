@@ -2,11 +2,11 @@
   <div class="fullscreen bg-blue text-white text-center q-pa-md flex flex-center">
     <div>
       <div style="font-size: 30vh">
-        404
+        :(
       </div>
 
-      <div class="text-h2" style="opacity:.4">
-        Implementierung der Hydrogen-Demo nicht verfügbar.
+      <div class="text-h2" style="opacity:.6">
+        Implementierung der Hydrogen-Demo steht leider nicht verfügbar.
       </div>
 
       <q-btn
@@ -15,7 +15,7 @@
         text-color="blue"
         unelevated
         to="/"
-        label="Auf die Übersichtsseite zurückkehren."
+        label="Auf die Übersichtsseite zurückkehren"
         no-caps
       />
     </div>

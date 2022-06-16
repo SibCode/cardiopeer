@@ -70,6 +70,13 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
+    path: '/matrix/impl',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/matrix/Impl.vue') },
+    ],
+  },
+  {
     path: '/internationalization',
     component: () => import('layouts/MainLayout.vue'),
     children: [
