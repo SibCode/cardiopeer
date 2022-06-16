@@ -125,7 +125,7 @@ const deveelopmentLinksList = [
 
 const matrixLinksList = [
   {
-    title: 'Matrix Demo',
+    title: 'Matrix Login Demo',
     icon: 'manage_accounts',
     link: '/matrix/demo'
   },
@@ -135,7 +135,7 @@ const matrixLinksList = [
     link: '/matrix/hydrogen'
   },
   {
-    title: 'Implementierun',
+    title: 'Implementierung',
     icon: 'terminal',
     link: '/matrix/impl'
   }

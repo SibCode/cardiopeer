@@ -1,17 +1,23 @@
 <template>
   <q-page>
-    <div class="text-h3 text-weight-thin">Implementierun</div>
+    <div class="text-h3 text-weight-thin">Implementierung</div>
     <q-separator spaced class="midata-fade"></q-separator>
 
     <div class="q-my-xl">
       <div class="q-qb-sm text-h5">Hydrogen</div>
       <p>
-        Hydrogen ist darauf ausgelegt in Webapplikationen integriert zu werden. 
-        Dabei bettet sich die Applikation über ein HTML-Element mit der Klasse "hydrogen" und der id="app" mit folgendem Code einfach ein:
+        Hydrogen ist darauf ausgelegt einfach in eine Webseite oder Webapplikation eingebunden zu werden. 
+        Mehr dazu findet sich in der Dokumentation in der Quelle zu Hydrogen. 
+        Es lehnt sich dabei an Element an, einem ausührlichen Matrix-Client mit vielen Funktionen 
+        und will als "leichtestes Element" lediglich Grundfunktionen möglichst simpel überall verfügbar machen.
       </p>
+      <div class="q-my-xl text-grey">
+      Quelle: https://matrix.org/docs/projects/client/hydrogen
+      </div>
+
       <div class="text-h6">Chat-Bots und Generierung von Chat-Räumen</div>
       <p>
-        Mit folgendem Code kann eine Raum für zwei User erstellt werden, sofern der Client (z.B. ein Bot) authentifziert ist:
+        Mit folgendem Code kann eine Raum für zwei User erstellt werden, sofern der Client (z.B. ein Bot auf einem Applikationsserver) authentifziert ist:
       </p>
       <highlightjs language="javascript" code="client.createRoom(invite: [coachID, coacheeID]);"/>
       <p>
